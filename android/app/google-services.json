@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "73052952477",
+    "project_id": "workii-18cb6",
+    "storage_bucket": "workii-18cb6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:73052952477:android:c011b5ed9156c07defc174",
+        "android_client_info": {
+          "package_name": "com.example.worki"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "73052952477-mft9umdkvjli4hshn4bu3h626fonohc3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBi0F2GFdFKRO-FWQbdj4Rkc-CQibOb6Z8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "73052952477-mft9umdkvjli4hshn4bu3h626fonohc3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

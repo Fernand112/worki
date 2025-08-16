@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Usuarios pueden leer y escribir sus propios datos, y leer perfiles de otros usuarios
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Colección de trabajos - usuarios autenticados pueden leer y crear
+    match /jobs/{jobId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null && 
+        request.auth.uid == resource.data.authorId;
+    }
+    
+    // Colección de postulaciones - usuarios pueden crear y leer sus propias postulaciones
+    match /job_applications/{applicationId} {
+      allow read, write: if request.auth != null && 
+        (request.auth.uid == resource.data.applicantId || 
+         request.auth.uid == get(/databases/$(database)/documents/jobs/$(resource.data.jobId)).data.authorId);
+      allow create: if request.auth != null;
+    }
+    
+    // Colección de notificaciones - usuarios pueden leer sus propias notificaciones
+    match /notifications/{notificationId} {
+      allow read, write: if request.auth != null && request.auth.uid == resource.data.userId;
+      allow create: if request.auth != null;
+    }
+    
+    // Colección de test para debugging
+    match /test/{document} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
